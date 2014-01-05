@@ -1,0 +1,15 @@
+[submodule "htpc-manager"]
+	path = htpc-manager
+	url = git@github.com:styxit/HTPC-Manager.git
+[submodule "sabnzbd"]
+	path = sabnzbd
+	url = git@github.com:sabnzbd/sabnzbd.git
+[submodule "couchpotato"]
+	path = couchpotato
+	url = git@github.com:RuudBurger/CouchPotatoServer.git
+[submodule "headphones"]
+	path = headphones
+	url = git@github.com:rembo10/headphones.git
+[submodule "sickbeard"]
+	path = sickbeard
+	url = git@github.com:midgetspy/Sick-Beard.git
