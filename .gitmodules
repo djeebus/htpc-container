@@ -13,3 +13,6 @@
 [submodule "sickbeard"]
 	path = sickbeard
 	url = git@github.com:midgetspy/Sick-Beard.git
+[submodule "deluge"]
+	path = deluge
+	url = http://git.deluge-torrent.org/deluge/
