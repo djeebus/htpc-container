@@ -6,7 +6,7 @@ if [ -e $PID_FILE ]
 then
 	echo "HTPC manager running, killing it ... "
 	HTPC_ID=$(cat $PID_FILE)
-	sudo docker kill $HTPC_ID
+	docker kill $HTPC_ID
 	rm $PID_FILE
 fi
 
@@ -33,8 +33,6 @@ RUN_OPTIONS="$RUN_OPTIONS -p 8003:8003"
 # add deluge web ui port
 RUN_OPTIONS="$RUN_OPTIONS -p 8112:8112"
 
-# add deluged api port
-RUN_OPTIONS="$RUN_OPTIONS -p 58846:58846"
 # add torrent ports
 RUN_OPTIONS="$RUN_OPTIONS -p 6881:6881"
 RUN_OPTIONS="$RUN_OPTIONS -p 6882:6882"
@@ -51,8 +49,10 @@ RUN_OPTIONS="$RUN_OPTIONS -p 6891:6891"
 # add config mount
 RUN_OPTIONS="$RUN_OPTIONS -v /var/htpc:/var/htpc"
 
-# add data mount
+# add shared folder mounts
 RUN_OPTIONS="$RUN_OPTIONS -v /mnt/p2p:/mnt/p2p"
+RUN_OPTIONS="$RUN_OPTIONS -v /mnt/video:/mnt/video"
+
 
 echo "Starting HTPC manager"
 image_id=$(docker run $RUN_OPTIONS djeebus/htpc-container)
