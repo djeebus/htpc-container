@@ -30,6 +30,9 @@ ADD supervisor/couchpotato.conf /etc/supervisor/conf.d/
 
 ADD supervisor/deluge.conf /etc/supervisor/conf.d/
 
+RUN apt-get install -y nginx
+ADD nginx /opt/nginx
+
 RUN mkdir /mnt/p2p
 
 CMD [ "/usr/bin/supervisord" ]
