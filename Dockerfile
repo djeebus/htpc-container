@@ -32,6 +32,7 @@ ADD supervisor/deluge.conf /etc/supervisor/conf.d/
 
 RUN apt-get install -y nginx
 ADD nginx /opt/nginx
+ADD supervisor/nginx.conf /etc/supervisor/conf.d/
 
 RUN mkdir /mnt/p2p
 
