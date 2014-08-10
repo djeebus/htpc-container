@@ -31,6 +31,8 @@ ADD supervisor/couchpotato.conf /etc/supervisor/conf.d/
 ADD supervisor/deluge.conf /etc/supervisor/conf.d/
 
 RUN apt-get install -y nginx
+RUN /etc/init.d/nginx stop
+sudo update-rc.d -f nginx disable
 ADD nginx /opt/nginx
 ADD supervisor/nginx.conf /etc/supervisor/conf.d/
 
