@@ -46,8 +46,12 @@ RUN_OPTIONS="$RUN_OPTIONS -p 6889:6889"
 RUN_OPTIONS="$RUN_OPTIONS -p 6890:6890"
 RUN_OPTIONS="$RUN_OPTIONS -p 6891:6891"
 
+# add nginx ports
+RUN_OPTIONS="$RUN_OPTIONS -p 80:80"
+RUN_OPTIONS="$RUN_OPTIONS -p 443:443"
+
 # add config mount
-RUN_OPTIONS="$RUN_OPTIONS -v /var/htpc:/var/htpc"
+RUN_OPTIONS="$RUN_OPTIONS -v /mnt/htpc/:/var/htpc"
 
 # add shared folder mounts
 RUN_OPTIONS="$RUN_OPTIONS -v /mnt/p2p:/mnt/p2p"

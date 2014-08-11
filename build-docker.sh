@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 HOST_NAME=htpc-downloader.local
 
@@ -14,6 +15,12 @@ then
 	        -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=$HOST_NAME" \
 	        -keyout $BASE_FILE.key \
 	        -out $BASE_FILE.crt
+fi
+
+CRED_FILE=nginx/htpasswd
+if [ ! -f $CRED_FILE ]
+then
+	htpasswd -c nginx/htpasswd htpc
 fi
 
 docker build -t djeebus/htpc-container .
