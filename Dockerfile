@@ -10,6 +10,8 @@ RUN apt-get upgrade -y
 RUN apt-get install -y supervisor
 RUN apt-get install -y python-cheetah python-openssl unzip unrar par2
 RUN apt-get install -y deluged deluge-web python-setuptools
+RUN apt-get install -y python-pip python-dev build-essential
+RUN pip install psutil
 
 RUN apt-get install -y nginx
 RUN /etc/init.d/nginx stop
