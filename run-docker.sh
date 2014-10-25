@@ -2,16 +2,16 @@
 
 PID_FILE=/var/run/htpc-manager.pid
 
-if [ -e $PID_FILE ]
-then
-	echo "HTPC manager running, killing it ... "
-	HTPC_ID=$(cat $PID_FILE)
-	docker kill $HTPC_ID
-	docker rm htpc
-	rm $PID_FILE
-fi
+#if [ -e $PID_FILE ]
+#then
+#	echo "HTPC manager running, killing it ... "
+#	HTPC_ID=$(cat $PID_FILE)
+#	docker kill $HTPC_ID
+#	docker rm htpc
+#	rm $PID_FILE
+#fi
 
-RUN_OPTIONS="-d --name htpc"
+RUN_OPTIONS="-a stdout --name=htpc"
 
 # add supervisord port
 RUN_OPTIONS="$RUN_OPTIONS -p 9000:9000"
@@ -30,8 +30,8 @@ RUN_OPTIONS="$RUN_OPTIONS -p 6890:6890"
 RUN_OPTIONS="$RUN_OPTIONS -p 6891:6891"
 
 # add nginx ports
-RUN_OPTIONS="$RUN_OPTIONS -p 80:80"
-RUN_OPTIONS="$RUN_OPTIONS -p 443:443"
+#RUN_OPTIONS="$RUN_OPTIONS -p 80:80"
+#RUN_OPTIONS="$RUN_OPTIONS -p 443:443"
 
 # add config mount
 RUN_OPTIONS="$RUN_OPTIONS -v /mnt/htpc/:/var/htpc"
