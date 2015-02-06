@@ -1,17 +1,6 @@
 #!/bin/bash
 
-PID_FILE=/var/run/htpc-manager.pid
-
-#if [ -e $PID_FILE ]
-#then
-#	echo "HTPC manager running, killing it ... "
-#	HTPC_ID=$(cat $PID_FILE)
-#	docker kill $HTPC_ID
-#	docker rm htpc
-#	rm $PID_FILE
-#fi
-
-RUN_OPTIONS="-a stdout --name=htpc"
+RUN_OPTIONS="--name=htpc"
 
 # add supervisord port
 RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:9000:9000"
@@ -32,6 +21,7 @@ RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:6891:6891"
 # add nginx ports
 RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:80:80"
 RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:443:443"
+RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:8005:8005"
 
 # add config mount
 RUN_OPTIONS="$RUN_OPTIONS -v /mnt/htpc/:/var/htpc"
@@ -39,9 +29,8 @@ RUN_OPTIONS="$RUN_OPTIONS -v /mnt/htpc/:/var/htpc"
 # add shared folder mounts
 RUN_OPTIONS="$RUN_OPTIONS -v /mnt/p2p:/mnt/p2p"
 RUN_OPTIONS="$RUN_OPTIONS -v /mnt/video:/mnt/video"
+RUN_OPTIONS="$RUN_OPTIONS -v /mnt/books:/mnt/books"
 
 
-echo "Starting HTPC manager"
-image_id=$(docker run $RUN_OPTIONS djeebus/htpc-container)
-
-echo $image_id >> $PID_FILE
+echo "Starting HTPC manager ... "
+docker run $RUN_OPTIONS djeebus/htpc-container

@@ -23,4 +23,4 @@ then
 	htpasswd -c nginx/htpasswd htpc
 fi
 
-docker build -t djeebus/htpc-container .
+docker build -t djeebus/htpc-container $@ .

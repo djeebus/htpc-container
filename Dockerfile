@@ -15,6 +15,7 @@ RUN apt-get install -y supervisor
 RUN apt-get install -y python-cheetah python-openssl unzip unrar par2
 RUN apt-get install -y deluged deluge-webui
 RUN apt-get install -y python-setuptools python-pip python-dev build-essential
+RUN apt-get install -y xz-utils xdg-utils imagemagick wget
 RUN pip install psutil
 
 RUN apt-get install -y nginx
@@ -38,6 +39,10 @@ ADD supervisor/headphones.conf /etc/supervisor/conf.d/
 
 ADD couchpotato /opt/couchpotato
 ADD supervisor/couchpotato.conf /etc/supervisor/conf.d/
+
+RUN wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | \
+	sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()"
+ADD supervisor/calibre.conf /etc/supervisor/conf.d/
 
 ADD supervisor/deluge.conf /etc/supervisor/conf.d/
 
