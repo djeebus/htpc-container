@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUN_OPTIONS="--name=htpc"
+RUN_OPTIONS="--name=htpc -a stdout"
 
 # add supervisord port
 RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:9000:9000"
@@ -21,7 +21,6 @@ RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:6891:6891"
 # add nginx ports
 RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:80:80"
 RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:443:443"
-RUN_OPTIONS="$RUN_OPTIONS -p 0.0.0.0:8005:8005"
 
 # add config mount
 RUN_OPTIONS="$RUN_OPTIONS -v /mnt/htpc/:/var/htpc"
