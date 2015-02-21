@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo docker rm htpc
+
 RUN_OPTIONS="--name=htpc -a stdout"
 
 # add supervisord port
